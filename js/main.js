@@ -1,14 +1,14 @@
 // Constantes
 const formulario = document.getElementById("novoItem")
 const lista = document.getElementById("lista")
-const ItemArmazenado = JSON.parse(localStorage.getItem("armazenamentoDeItens")) || []
+const itemArmazenado = JSON.parse(localStorage.getItem("armazenamentoDeItens")) || []
 
-ItemArmazenado.forEach((item) => {
+itemArmazenado.forEach((item) => {
     criaItem(item.nome, item.quantidade)
 })
 
 // Funções
-function criaItem (ItemAdicionado) {
+function criaItem (itemAdicionado) {
 
     // Cria 'li' e atribui a classe ".item" a ela.
     const novoItemCadastrado = document.createElement('li')
@@ -16,12 +16,12 @@ function criaItem (ItemAdicionado) {
 
     // Cria um 'strong' com a quantiade de objetos adicionados
     const quantidadeItens = document.createElement('strong')
-    quantidadeItens.innerHTML = ItemAdicionado.quantidade
+    quantidadeItens.innerHTML = itemAdicionado.quantidade
 
 
     // Junta a criação da 'li', com a class ".item" e com o strong, montando a linha no formato correto
     novoItemCadastrado.appendChild(quantidadeItens)
-    novoItemCadastrado.innerHTML += ItemAdicionado.nome
+    novoItemCadastrado.innerHTML += itemAdicionado.nome
 
     // Insere a linha criada na lista pré-existente
     lista.appendChild(novoItemCadastrado)
@@ -43,9 +43,9 @@ formulario.addEventListener("submit", (capturou) => {
 
     criaItem(armazenamentoDeItens)
 
-    ItemArmazenado.push(armazenamentoDeItens)
+    itemArmazenado.push(armazenamentoDeItens)
 
-    localStorage.setItem("armazenamentoDeItens", JSON.stringify(ItemArmazenado))
+    localStorage.setItem("armazenamentoDeItens", JSON.stringify(itemArmazenado))
 
     nome.value = ""
     quantidade.value = ""
